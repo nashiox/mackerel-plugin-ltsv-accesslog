@@ -1,0 +1,10 @@
+time:08/Mar/2017:14:12:40 +0900	host:192.0.2.17	http_status:200	responsetime:0.038
+time:08/Mar/2017:14:12:40 +0900	host:192.0.2.17	http_status:404	responsetime:0.011
+time:08/Mar/2017:14:12:40 +0900	host:192.0.2.17	http_status:500	responsetime:1.018
+time:08/Mar/2017:14:12:40 +0900	host:192.0.2.17	http_status:303	responsetime:2.018
+time:08/Mar/2017:14:12:40 +0900	host:192.0.2.17	http_status:200	responsetime:0.033
+time:08/Mar/2017:14:12:40 +0900	host:192.0.2.17	http_status:200	responsetime:0.014
+time:08/Mar/2017:14:12:40 +0900	host:192.0.2.17	http_status:200	responsetime:0.118
+time:08/Mar/2017:14:12:40 +0900	host:192.0.2.17	http_status:200	responsetime:4.018
+time:08/Mar/2017:14:12:40 +0900	host:192.0.2.17	http_status:200	responsetime:0.318
+time:08/Mar/2017:14:12:40 +0900	host:192.0.2.17	http_status:200	responsetime:0.018
