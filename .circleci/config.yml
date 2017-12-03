@@ -1,7 +1,7 @@
 version: 2
 jobs:
   test:
-    working_directory: /go/src/github.com/nashiox/packer-post-processor-openstack-image-management
+    working_directory: /go/src/github.com/nashiox/mackerel-plugin-ltsv-accesslog
     docker:
       - image: golang:1.9
     steps:
@@ -15,7 +15,7 @@ jobs:
           command: make test
 
   deploy:
-    working_directory: /go/src/github.com/nashiox/packer-post-processor-openstack-image-management
+    working_directory: /go/src/github.com/nashiox/mackerel-plugin-ltsv-accesslog
     docker:
       - image: golang:1.9
     steps:
