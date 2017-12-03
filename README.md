@@ -38,8 +38,6 @@ command = "/path/to/mackerel-plugin-ltsv-accesslog -request-time-key=reqtime -st
 
 ## accesslog.latency
 
-Latency (Available only with LTSV format)
-
 - accesslog.average
 - accesslog.min
 - accesslog.max
