@@ -187,7 +187,15 @@ func Do() {
 		optReqTimeKey = flag.String("request-time-key", "reqtime", "Request time key name in log format")
 		optTempfile   = flag.String("tempfile", "", "Temp file name")
 	)
+	flag.Usage = func() {
+		fmt.Fprintf(os.Stderr, "Usage: %s [OPTION] /path/to/access.log\n", os.Args[0])
+		flag.PrintDefaults()
+	}
 	flag.Parse()
+	if flag.NArg() < 1 {
+		flag.Usage()
+		os.Exit(1)
+	}
 
 	helper := mp.NewMackerelPlugin(&LTSVAccesslogPlugin{
 		Prefix:     *optPrefix,
