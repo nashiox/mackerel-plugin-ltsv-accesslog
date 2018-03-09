@@ -1,6 +1,6 @@
 REPO = mackerel-plugin-ltsv-accesslog
 BIN = $(REPO)
-VERSION = 0.0.1
+VERSION = 0.0.2
 ARTIFACTS_DIR = dist/snapshot/
 
 all: clean test build
