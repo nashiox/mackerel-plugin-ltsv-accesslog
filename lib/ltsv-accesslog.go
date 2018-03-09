@@ -21,12 +21,13 @@ import (
 
 // LTSVAccesslogPlugin mackerel plugin
 type LTSVAccesslogPlugin struct {
-	Prefix     string
-	File       string
-	PosFile    string
-	NoPosFile  bool
-	StatusKey  string
-	ReqTimeKey string
+	Prefix         string
+	File           string
+	PosFile        string
+	NoPosFile      bool
+	StatusKey      string
+	ReqTimeKey     string
+	CacheStatusKey string
 }
 
 // MetricKeyPrefix interface for PluginWithPrefix
@@ -78,6 +79,19 @@ func (p *LTSVAccesslogPlugin) GraphDefinition() map[string](mp.Graphs) {
 				{Name: "max", Label: "Max"},
 			},
 		},
+		"cache_rate": {
+			Label: labelPrefix + " Cache Status",
+			Unit:  "percentage",
+			Metrics: []mp.Metrics{
+				{Name: "HIT_percentage", Label: "HIT Percentage", Stacked: true},
+				{Name: "MISS_percentage", Label: "MISS Percentage", Stacked: true},
+				{Name: "EXPIRED_percentage", Label: "EXPIRED Percentage", Stacked: true},
+				{Name: "REVALIDATED_percentage", Label: "REVALIDATED Percentage", Stacked: true},
+				{Name: "BYPASS_percentage", Label: "BYPASS Percentage", Stacked: true},
+				{Name: "STALE_percentage", Label: "STALE Percentage", Stacked: true},
+				{Name: "UPDATING_percentage", Label: "UPDATING Percentage", Stacked: true},
+			},
+		},
 	}
 }
 
@@ -123,6 +137,7 @@ func (p *LTSVAccesslogPlugin) FetchMetrics() (map[string]float64, error) {
 
 	countMetrics := []string{"total_count", "2xx_count", "3xx_count", "4xx_count", "404_count", "5xx_count", "503_count"}
 	ret := make(map[string]float64)
+	cacheCount := make(map[string]float64)
 	for _, k := range countMetrics {
 		ret[k] = 0
 	}
@@ -145,6 +160,12 @@ func (p *LTSVAccesslogPlugin) FetchMetrics() (map[string]float64, error) {
 		} else {
 			ret[string(record[p.StatusKey][0])+"xx_count"]++
 		}
+
+		if record[p.CacheStatusKey] != "" && record[p.CacheStatusKey] != "-" {
+			cacheCount[string(record[p.CacheStatusKey])+"_count"]++
+			cacheCount["cache_total_count"]++
+		}
+
 		ret["total_count"]++
 
 		v, err := strconv.ParseFloat(record[p.ReqTimeKey], 64)
@@ -152,6 +173,12 @@ func (p *LTSVAccesslogPlugin) FetchMetrics() (map[string]float64, error) {
 			log.Println(err)
 		}
 		reqtimes = append(reqtimes, v)
+	}
+
+	if cacheCount["cache_total_count"] > 0 {
+		for _, v := range []string{"HIT", "MISS", "EXPIRED", "REVALIDATED", "BYPASS", "STALE", "UPDATING"} {
+			ret[v+"_percentage"] = cacheCount[v+"_count"] * 100 / cacheCount["cache_total_count"]
+		}
 	}
 
 	if ret["total_count"] > 0 {
@@ -180,12 +207,13 @@ func (p *LTSVAccesslogPlugin) FetchMetrics() (map[string]float64, error) {
 // main function
 func Do() {
 	var (
-		optPrefix     = flag.String("metric-key-prefix", "", "Metric key prefix")
-		optPosFile    = flag.String("posfile", "", "(Not necessary to specify it in the usual use case) posfile")
-		optNoPosFile  = flag.Bool("no-posfile", false, "No position file")
-		optStatusKey  = flag.String("status-key", "status", "Status key name in log format")
-		optReqTimeKey = flag.String("request-time-key", "reqtime", "Request time key name in log format")
-		optTempfile   = flag.String("tempfile", "", "Temp file name")
+		optPrefix         = flag.String("metric-key-prefix", "", "Metric key prefix")
+		optPosFile        = flag.String("posfile", "", "(Not necessary to specify it in the usual use case) posfile")
+		optNoPosFile      = flag.Bool("no-posfile", false, "No position file")
+		optStatusKey      = flag.String("status-key", "status", "Status key name in log format")
+		optReqTimeKey     = flag.String("request-time-key", "reqtime", "Request time key name in log format")
+		optCacheStatusKey = flag.String("cache-status-key", "upstream_cache_status", "Cache Status key name in log format")
+		optTempfile       = flag.String("tempfile", "", "Temp file name")
 	)
 	flag.Usage = func() {
 		fmt.Fprintf(os.Stderr, "Usage: %s [OPTION] /path/to/access.log\n", os.Args[0])
@@ -198,12 +226,13 @@ func Do() {
 	}
 
 	helper := mp.NewMackerelPlugin(&LTSVAccesslogPlugin{
-		Prefix:     *optPrefix,
-		File:       flag.Args()[0],
-		PosFile:    *optPosFile,
-		NoPosFile:  *optNoPosFile,
-		StatusKey:  *optStatusKey,
-		ReqTimeKey: *optReqTimeKey,
+		Prefix:         *optPrefix,
+		File:           flag.Args()[0],
+		PosFile:        *optPosFile,
+		NoPosFile:      *optNoPosFile,
+		StatusKey:      *optStatusKey,
+		ReqTimeKey:     *optReqTimeKey,
+		CacheStatusKey: *optCacheStatusKey,
 	})
 	helper.Tempfile = *optTempfile
 
