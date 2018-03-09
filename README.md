@@ -5,14 +5,14 @@ LTSV format accesslog custom metrics plugin for mackerel.io agent.
 ## Synopsis
 
 ```shell
-mackerel-plugin-ltsv-accesslog [-metric-key-prefix=<prefix>] [-no-posfile] [-posfile=<posfile>] [-request-time-key=<reqtime key> (default reqtime)] [-status-key=<status key> (default status)] [-tempfile=<tempfile>] /path/to/access.log
+mackerel-plugin-ltsv-accesslog [-metric-key-prefix=<prefix>] [-no-posfile] [-posfile=<posfile>] [-request-time-key=<reqtime key> (default reqtime)] [-status-key=<status key> (default status)] [-cache-status-key=<cache status key> (default upstream_cache_status)] [-tempfile=<tempfile>] /path/to/access.log
 ```
 
 ## Example of mackerel-agent.conf
 
 ```
 [plugin.metrics.accesslog]
-command = "/path/to/mackerel-plugin-ltsv-accesslog -request-time-key=reqtime -status-key=status /path/to/access.log"
+command = "/path/to/mackerel-plugin-ltsv-accesslog -request-time-key=reqtime -status-key=status -cache-status-key=upstream_cache_status /path/to/access.log"
 ```
 
 ## Graphs and Metrics
@@ -38,9 +38,19 @@ command = "/path/to/mackerel-plugin-ltsv-accesslog -request-time-key=reqtime -st
 
 ## accesslog.latency
 
-- accesslog.average
-- accesslog.min
-- accesslog.max
-- accesslog.90_percentile
-- accesslog.95_percentile
-- accesslog.99_percentile
+- accesslog.latency.average
+- accesslog.latency.min
+- accesslog.latency.max
+- accesslog.latency.90_percentile
+- accesslog.latency.95_percentile
+- accesslog.latency.99_percentile
+
+## accesslog.cache_rate
+
+- accesslog.cache_rate.HIT_percentage
+- accesslog.cache_rate.MISS_percentage
+- accesslog.cache_rate.EXPIRED_percentage
+- accesslog.cache_rate.REVALIDATED_percentage
+- accesslog.cache_rate.BYPASS_percentage
+- accesslog.cache_rate.STALE_percentage
+- accesslog.cache_rate.UPDATING_percentage
