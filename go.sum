@@ -1,6 +1,4 @@
 github.com/BurntSushi/toml v0.3.1/go.mod h1:xHWCNGjB5oqiDr8zfno3MHue2Ht5sIBksp03qcyfWMU=
-github.com/Songmu/postailer v0.0.0-20170612154332-3ffa14de0f6f h1:OmLNUuYQFnky0Wa0Tx8PWqFSihiFJ4XKsEToIfjqMwg=
-github.com/Songmu/postailer v0.0.0-20170612154332-3ffa14de0f6f/go.mod h1:l/s6hyXxAzzWQH7YLeSNi80ke+zroUiWkEfuNGluaWk=
 github.com/Songmu/postailer v0.0.0-20181014062912-daaa1ba9cc39 h1:4BIHAY9tJ5KqVvhQK+2uQMOCDP6UkdBDyoxVVOOMT/M=
 github.com/Songmu/postailer v0.0.0-20181014062912-daaa1ba9cc39/go.mod h1:l/s6hyXxAzzWQH7YLeSNi80ke+zroUiWkEfuNGluaWk=
 github.com/Songmu/retry v0.1.0/go.mod h1:7sXIW7eseB9fq0FUvigRcQMVLR9tuHI0Scok+rkpAuA=
@@ -17,12 +15,8 @@ github.com/kr/pretty v0.1.0/go.mod h1:dAy3ld7l9f0ibDNOQOHHMYYIIbhfbHSm3C4ZsoJORN
 github.com/kr/pty v1.1.1/go.mod h1:pFQYn66WHrOpPYNljwOMqo10TkYh1fy3cYio2l3bCsQ=
 github.com/kr/pty v1.1.4/go.mod h1:pFQYn66WHrOpPYNljwOMqo10TkYh1fy3cYio2l3bCsQ=
 github.com/kr/text v0.1.0/go.mod h1:4Jbv+DJW3UT/LiOwJeYQe1efqtUx/iVham/4vfdArNI=
-github.com/mackerelio/go-mackerel-plugin v0.0.0-20171016074510-f0cf8da58012 h1:fUoWbZI+XfRGCXEdMVtz9BsWzeXiFr5OGlVSiLBVgpg=
-github.com/mackerelio/go-mackerel-plugin v0.0.0-20171016074510-f0cf8da58012/go.mod h1:cnhQn7nt6mOZKBya/EA/Bn0RxHDrKJv1XdXoUbiKl2I=
 github.com/mackerelio/go-mackerel-plugin v0.1.0 h1:S9xqdSWrqYUNgkyy6dkLlLYBuBu0lhBBge196y6EsCU=
 github.com/mackerelio/go-mackerel-plugin v0.1.0/go.mod h1:hV+0M18+q787IEDQhLficGPJoEfx0JbPuhqmU1z7l/M=
-github.com/mackerelio/golib v0.0.0-20171016083311-f8af1a14676a h1:Z3ca5UBVU/clsxtXgtpy4cFaZUgpPxbsI1mzp+Zpins=
-github.com/mackerelio/golib v0.0.0-20171016083311-f8af1a14676a/go.mod h1:QQXnbzDaHtoPLMpOFWMWyLhxJMBqKEwM5gs6rz+fBxk=
 github.com/mackerelio/golib v0.0.0-20190411032134-c87047ca454e/go.mod h1:kbqYA8VcFqcMt07v+GPSZQwqtwc7Wr0V0vzxUNMrk7E=
 github.com/mackerelio/golib v1.0.0 h1:wiJv4l8xU9jmMn/JZV6gfpJeLUQxVFG0kVFWnsoF9wA=
 github.com/mackerelio/golib v1.0.0/go.mod h1:Udb4zyFG2ui7TNTMOX8In0U8AT4woLu53/46ncRwNzE=
@@ -30,8 +24,6 @@ github.com/mattn/go-colorable v0.1.1/go.mod h1:FuOcm+DKB9mbwrcAfNl7/TZVBZ6rcncea
 github.com/mattn/go-isatty v0.0.5/go.mod h1:Iq45c/XA43vh69/j3iqttzPXn0bhXyGjM0Hdxcsrc5s=
 github.com/mattn/go-isatty v0.0.7/go.mod h1:Iq45c/XA43vh69/j3iqttzPXn0bhXyGjM0Hdxcsrc5s=
 github.com/mitchellh/go-homedir v1.1.0/go.mod h1:SfyaCUpYCn1Vlf4IUYiD9fPX4A5wJrkLzIz1N1q0pr0=
-github.com/montanaflynn/stats v0.0.0-20151014174947-eeaced052adb h1:bsjNADsjHq0gjU7KO7zwoX5k3HtFdf6TDzB3ncl5iUs=
-github.com/montanaflynn/stats v0.0.0-20151014174947-eeaced052adb/go.mod h1:wL8QJuTMNUDYhXwkmfOly8iTdp5TEcJFWZD2D7SIkUc=
 github.com/montanaflynn/stats v0.6.3 h1:F8446DrvIF5V5smZfZ8K9nrmmix0AFgevPdLruGOmzk=
 github.com/montanaflynn/stats v0.6.3/go.mod h1:wL8QJuTMNUDYhXwkmfOly8iTdp5TEcJFWZD2D7SIkUc=
 github.com/najeira/ltsv v0.0.0-20150303073528-40eb84a5b5d2 h1:woADZdsnRYjTG+9Rb4Wq9Eltb+6ZC9REv2ObFt0m9KA=
