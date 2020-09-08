@@ -21,6 +21,6 @@ archives:
       windows: windows
       386: i386
       amd64: x86_64
-      format: zip
+  format: zip
 release:
   prerelease: auto
